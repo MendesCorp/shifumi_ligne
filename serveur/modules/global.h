@@ -15,3 +15,4 @@
 #include <dirent.h> // Pour lister les fichiers
 #include <fcntl.h>  // Pour manipuler les fichiers
 #include <sys/stat.h> // Pour les fichiers
+#include <pthread.h> // pr ls threads
