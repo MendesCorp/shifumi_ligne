@@ -1,0 +1,1 @@
+#include "shifumi_ligne/client/modules/global.h"
