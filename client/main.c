@@ -1,4 +1,4 @@
-#include "shifumi_ligne/client/modules/global.h"
+#include "global.h"
 
 
 
@@ -39,3 +39,4 @@ int main(){
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
     // SOCKET CLIENT PRET A COMMUNIQUER !
+}

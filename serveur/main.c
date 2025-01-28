@@ -1,4 +1,6 @@
-#include "shifumi_ligne/client/modules/global.h"
+#include "global.h"
+
+void * thread(){}
 
 int main() {
 
@@ -12,7 +14,7 @@ int main() {
         .sin_port = htons(SERVER_PORT)
     };
 
-    int error = bind(serv_fd,(struct sockaddr*)&server_addr,sizeof server_addr);perror("bind");
+    int error = bind(serv_fd,(struct sockaddr*)&server_addr,sizeof server_addr); perror("bind");
     if(error == -1) { close(serv_fd); return EXIT_FAILURE; }
 
     error = listen(serv_fd,BUFSIZ);perror("listen");
@@ -22,11 +24,23 @@ int main() {
     
     struct sockaddr_in client_addr;
     socklen_t len;
-    int client_fd = accept(serv_fd,(struct sockaddr*)&client_addr,&len);
- 
-    // int nb_clients_acceptes = 0;
 
-    // for(nb_clients_acceptes; nb_clients_acceptes < 3; nb_clients_acceptes ++) {
-        
-    // }
+    int client_fd = accept(serv_fd,(struct sockaddr*)&client_addr,&len); perror("accept");
+    if(client_fd == -1) return EXIT_FAILURE;
+
+
+
+
+
+
+
+
+
+
+
+    close(client_fd); close(serv_fd);
+
+    return EXIT_SUCCESS;
+}
+    
 
