@@ -1,8 +1,9 @@
 #pragma once
 #define BUFFER_SIZE 1024
 
-#define CLIENT_PORT 8010
-#define SERVER_PORT 3005
+
+#define CLIENT_PORT 8018
+#define SERVER_PORT 3008
 
 
 
@@ -15,4 +16,3 @@
 #include <dirent.h> // Pour lister les fichiers
 #include <fcntl.h>  // Pour manipuler les fichiers
 #include <sys/stat.h> // Pour les fichiers
-#include <pthread.h> // pr ls threads

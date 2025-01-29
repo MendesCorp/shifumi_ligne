@@ -1,8 +1,8 @@
 #pragma once
 #define BUFFER_SIZE 1024
 
-#define CLIENT_PORT 8010
-#define SERVER_PORT 3005
+#define CLIENT_PORT 8012
+#define SERVER_PORT 3008
 
 
 

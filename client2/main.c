@@ -1,4 +1,4 @@
-#include "shifumi_ligne/client/modules/global.h"
+#include "global.h"
 
 
 
@@ -38,4 +38,8 @@ int main(){
     error = connect(client_fd,(struct sockaddr*)&server_addr,sizeof server_addr);perror("connect");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
+    while(1){
+        printf("caca");
+    }
     // SOCKET CLIENT PRET A COMMUNIQUER !
+}
