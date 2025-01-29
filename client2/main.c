@@ -1,6 +1,7 @@
 #include "global.h"
 
 
+
 int main(){
 
     /**
@@ -29,13 +30,12 @@ int main(){
      * connect
      * Je connecte mon socket client au socket server situé en 127.0.0.1:SERVER_PORT
      */
-    struct sockaddr_in serv_addr = {
+    struct sockaddr_in server_addr = {
         .sin_addr.s_addr = inet_addr("127.0.0.1"), // Attention à ne pas mettre INADDR_ANY !
         .sin_family = AF_INET,
         .sin_port = htons(SERVER_PORT)
     };
-
-    error = connect(client_fd,(struct sockaddr*)&serv_addr,sizeof serv_addr);perror("connect");
+    error = connect(client_fd,(struct sockaddr*)&server_addr,sizeof server_addr);perror("connect");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
     while(1){
