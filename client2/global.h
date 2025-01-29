@@ -2,8 +2,8 @@
 #define BUFFER_SIZE 1024
 
 
-#define CLIENT_PORT 8018
-#define SERVER_PORT 3008
+#define CLIENT_PORT 4009
+#define SERVER_PORT 7777
 
 
 

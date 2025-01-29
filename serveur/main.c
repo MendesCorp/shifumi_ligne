@@ -1,5 +1,9 @@
 #include "global.h"
 
+#define CLIENTS 2
+
+int id_client[BUFSIZ];
+
 void * thread_accept(void* arg) {
 
     int serv_fd = socket(AF_INET, SOCK_STREAM, 0);perror("socket");
@@ -38,15 +42,24 @@ int main() {
     struct sockaddr_in client_addr;
     socklen_t len;
 
-    int nb_clients_acceptes = 0;
     int client_fd;
 
-    while(nb_clients_acceptes < 3) {
+
+    // PARCOURIR SOCKETS DES DEUX CLIENTS
+    for(int i = 0; i < CLIENTS; i++) {
         client_fd = accept(serv_fd, (struct sockaddr*) &client_addr, &len); perror("accept");
         if(client_fd == -1) return EXIT_FAILURE;
-        nb_clients_acceptes ++;
-
+        id_client[i] = client_fd;
     }
+    
+    for(int i = 0; i < CLIENTS; i++) {
+        error = send(id_client[i], "test", 4, 0); perror("send");
+        if(error == -1) return EXIT_FAILURE;
+    }
+
+
+
+    char buf[255]; memset(buf, 0, 255);
 
     pthread_t scd_client;
     pthread_create(&scd_client, NULL, thread_accept, NULL);
@@ -63,7 +76,7 @@ int main() {
 
 
 
-    close(client_fd); close(serv_fd);
+    close(serv_fd);
 
     return 0;
 }

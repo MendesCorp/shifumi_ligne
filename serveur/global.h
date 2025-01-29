@@ -1,7 +1,7 @@
 #pragma once
 #define BUFFER_SIZE 1024
 
-#define SERVER_PORT 3008
+#define SERVER_PORT 7777
 
 
 

@@ -38,8 +38,28 @@ int main(){
     error = connect(client_fd,(struct sockaddr*)&serv_addr,sizeof serv_addr);perror("connect");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
-    while(1){
-        printf("caca");
-    }
     // SOCKET CLIENT PRET A COMMUNIQUER !
+    char player[255]; memset(player, 0, 255);
+    char choix[255]; memset(choix, 0, 255);
+    
+    printf("Vous êtes qui ?\n");
+    //fgets(player, 255, stdin);
+    player[strcspn(player, "\n")] = 0;
+
+    printf("p f p ou c ? ?\n");
+    //fgets(choix, 255, stdin);
+    //choix[strcspn(choix, "\n")] = 0;
+
+    char buf[255]; memset(buf, 0, 255); 
+
+    error = recv(client_fd, buf, sizeof(buf), 0); perror("recv");
+    if(error == -1) return EXIT_FAILURE;
+    printf("%s\n", buf);
+
+
+
+
+
+close(client_fd);
+
 }
