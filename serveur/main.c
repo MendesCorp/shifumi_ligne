@@ -57,9 +57,26 @@ int main() {
         if(error == -1) return EXIT_FAILURE;
     }
 
+    char player1[255];
+    char player2[255];
+   // int choix_p1;   int choix_p2;
+    int tour  = 0;
+    int victoire_p1 = 0;    int defaite_p1 = 0;
+    int victoire_p2 = 0;    int defaite_p2 = 0;
+    char choix[255]; memset(choix, 0, 255);
 
+
+    recv(client_fd, choix, sizeof(choix), 0);
 
     char buf[255]; memset(buf, 0, 255);
+    
+
+
+
+
+
+
+
 
     pthread_t scd_client;
     pthread_create(&scd_client, NULL, thread_accept, NULL);

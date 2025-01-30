@@ -42,22 +42,15 @@ int main(){
     char player[255]; memset(player, 0, 255);
     char choix[255]; memset(choix, 0, 255);
     
-    printf("Vous êtes qui ?\n");
-    //fgets(player, 255, stdin);
+    printf("Qui est en train de jouer ?\n");
+    fgets(player, 255, stdin);
     player[strcspn(player, "\n")] = 0;
 
-    printf("p f p ou c ? ?\n");
-    //fgets(choix, 255, stdin);
-    //choix[strcspn(choix, "\n")] = 0;
+    printf("Pierre, feuille, ciseaux ?\n");
+    fgets(choix, 255, stdin);
+    choix[strcspn(choix, "\n")] = 0;
 
-    char buf[255]; memset(buf, 0, 255); 
-
-    error = recv(client_fd, buf, sizeof(buf), 0); perror("recv");
-    if(error == -1) return EXIT_FAILURE;
-    printf("%s\n", buf);
-
-
-
+    error = send(client_fd, choix, sizeof(choix), 0);
 
 
 close(client_fd);
