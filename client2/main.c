@@ -23,8 +23,6 @@ int main(){
     int error = bind(client_fd,(struct sockaddr*)&client_addr,sizeof client_addr);perror("bind");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
-
-
     /**
      * connect
      * Je connecte mon socket client au socket server situé en 127.0.0.1:SERVER_PORT
@@ -38,27 +36,25 @@ int main(){
     error = connect(client_fd,(struct sockaddr*)&serv_addr,sizeof serv_addr);perror("connect");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
-    // SOCKET CLIENT PRET A COMMUNIQUER !
-    char player[255]; memset(player, 0, 255);
-    char choix[255]; memset(choix, 0, 255);
-    
-    printf("Vous êtes qui ?\n");
-    //fgets(player, 255, stdin);
-    player[strcspn(player, "\n")] = 0;
+        // SOCKET CLIENT PRET A COMMUNIQUER !
+        char player[255]; memset(player, 0, 255);
+        char choix[255]; memset(choix, 0, 255);
+        
+        printf("Qui est en train de jouer ?\n");
+        fgets(player, 255, stdin);
+        player[strcspn(player, "\n")] = 0;
 
-    printf("p f p ou c ? ?\n");
-    //fgets(choix, 255, stdin);
-    //choix[strcspn(choix, "\n")] = 0;
-
-    char buf[255]; memset(buf, 0, 255); 
-
-    error = recv(client_fd, buf, sizeof(buf), 0); perror("recv");
-    if(error == -1) return EXIT_FAILURE;
-    printf("%s\n", buf);
+        error = send(client_fd, player, sizeof(player), 0);
+        while (1){
+          
+        printf("Pierre, feuille, ciseaux ?\n");
+        fgets(choix, 255, stdin);
+        choix[strcspn(choix, "\n")] = 0;
 
 
-
-
+        error = send(client_fd, choix, sizeof(choix), 0);
+        }
+ 
 
 close(client_fd);
 

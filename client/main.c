@@ -23,8 +23,6 @@ int main(){
     int error = bind(client_fd,(struct sockaddr*)&client_addr,sizeof client_addr);perror("bind");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
-
-
     /**
      * connect
      * Je connecte mon socket client au socket server situé en 127.0.0.1:SERVER_PORT
@@ -36,7 +34,10 @@ int main(){
     };
 
     error = connect(client_fd,(struct sockaddr*)&serv_addr,sizeof serv_addr);perror("connect");
-    if(error == -1) { close(client_fd); return EXIT_FAILURE; }
+    if(error == -1) { 
+        close(client_fd); 
+        return EXIT_FAILURE; 
+    }
 
     // SOCKET CLIENT PRET A COMMUNIQUER !
     char player[255]; memset(player, 0, 255);
@@ -46,13 +47,17 @@ int main(){
     fgets(player, 255, stdin);
     player[strcspn(player, "\n")] = 0;
 
-    printf("Pierre, feuille, ciseaux ?\n");
-    fgets(choix, 255, stdin);
-    choix[strcspn(choix, "\n")] = 0;
+    error = send(client_fd, player, sizeof(player), 0); perror("send player_name");
+    while (1){
+        
+        printf("Pierre, feuille, ciseaux ?\n");
+        fgets(choix, 255, stdin);
+        choix[strcspn(choix, "\n")] = 0;
 
-    error = send(client_fd, choix, sizeof(choix), 0);
+
+        error = send(client_fd, choix, sizeof(choix), 0); perror("send choix");
+    }
 
 
-close(client_fd);
-
+    close(client_fd);
 }

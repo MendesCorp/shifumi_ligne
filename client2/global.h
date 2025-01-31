@@ -3,7 +3,7 @@
 
 
 #define CLIENT_PORT 4009
-#define SERVER_PORT 7777
+#define SERVER_PORT 7778
 
 
 
