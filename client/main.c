@@ -42,10 +42,13 @@ int main(){
     // SOCKET CLIENT PRET A COMMUNIQUER !
     char player[255]; memset(player, 0, 255);
     char choix[255]; memset(choix, 0, 255);
+    //char player_join[255]; memset(player_join, 0, 255);
     
     printf("Qui est en train de jouer ?\n");
     fgets(player, 255, stdin);
     player[strcspn(player, "\n")] = 0;
+    //error = recv(client_fd, player_join, sizeof(player_join), 0); perror("recv");
+    
 
     error = send(client_fd, player, sizeof(player), 0); perror("send player_name");
     while (1){
@@ -53,7 +56,6 @@ int main(){
         printf("Pierre, feuille, ciseaux ?\n");
         fgets(choix, 255, stdin);
         choix[strcspn(choix, "\n")] = 0;
-
 
         error = send(client_fd, choix, sizeof(choix), 0); perror("send choix");
     }

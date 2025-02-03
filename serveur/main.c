@@ -45,47 +45,57 @@ int main() {
 
     int client_fd;
 
-
+    printf("pre-boucle while\n");
     // PARCOURIR SOCKETS DES DEUX CLIENTS
     while(1) {
 
+        printf("pre-boucle for; dans boucle while\n");
+        
         for(int i = 0; i < CLIENTS; i++) {
             client_fd = accept(serv_fd, (struct sockaddr*) &client_addr, &len); perror("accept");
             if(client_fd == -1) return EXIT_FAILURE;
-            id_client[i] = client_fd;
+            id_client[i] = client_fd;   // id_client[i] pour distinguer les deux clients 
+            printf("client[%d] connecté\n",i);
         }
         
-        for(int i = 0; i < CLIENTS; i++) {
-            error = send(id_client[i], "test", 4, 0); perror("send");
-            if(error == -1) return EXIT_FAILURE;
-        }
 
-
-        
-        ///struc joueur id_client[i]
         struct player player1;
-        strcpy(player1.nom, "Yaya");
-        player1.victoire = 0;
+        strcpy(player1.nom, "joueur");
+        player1.victoire = 0;                           //struct avec valeurs par défaut qu'on va ensuite venir modifier avec les entrées utilisateur des clients
         player1.choix = 1;
         struct player player2;
-        strcpy(player2.nom, "Antho");
+        strcpy(player2.nom, "joueur");
         player2.victoire = 0;
-        player2.choix = 1;
+        player2.choix = 0;
         
         char player[255]; memset(player, 0, 255);
+        int nb_recv = 0;
+
+        while(nb_recv < 2) {
+            ///recv des noms des joueurs
+            error = recv(id_client[0], player, sizeof(player), 0); perror("recv");
+            if (error > 0){
+                strcpy(player1.nom, player);
+                memset(player, 0, 255);     // réinitialise le tableau à 0
+                printf("%s a joué\n", player1.nom);
+                nb_recv++;
+
+            }else{ perror("recv");}
+                error = recv(id_client[1], player, sizeof(player), 0); perror("recv");
+
+            if (error > 0){
+                strcpy(player2.nom, player);
+                memset(player, 0, 255);
+                printf("%s a joué\n", player2.nom);
+                nb_recv++;
+            }else{ perror("recv");}
+        }
 
 
-        ///recv des noms des joueurs
-        error = recv(id_client[0], player, sizeof(player), 0); perror("recv");
-        strcpy(player1.nom, player);
-        memset(player, 0, 255);
-        error = recv(id_client[1], player, sizeof(player), 0); perror("recv");
-        strcpy(player2.nom, player);
+///0612324161
 
+        int round = 0 ;
 
-
-
-        int round = 1;
         while(1){
             ////RECV DES CHOIX DES JOUEURS
             char buf[255]; memset(buf, 0, 255); ///buffer pour stocker le choix à transferer dans player.choix
