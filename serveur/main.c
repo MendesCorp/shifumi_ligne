@@ -95,19 +95,20 @@ int main() {
 ///0612324161
 
         int round = 0 ;
-
+        char tampon[255];memset(tampon,0,255);
         while(1){
             ////RECV DES CHOIX DES JOUEURS
             char buf[255]; memset(buf, 0, 255); ///buffer pour stocker le choix à transferer dans player.choix
             error = recv(id_client[0], buf , sizeof(buf), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
             player1.choix = atoi(buf);
-            
+            error = send(id_client[1], tampon , sizeof(tampon), 0); perror("send");  ///tempon a renvoyer au joueur opposer 
 
             error = recv(id_client[1], buf , sizeof(buf), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
             player2.choix = atoi(buf);
-        
+            error = send(id_client[0], tampon , sizeof(tampon), 0); perror("send"); ///tempon a renvoyer au joueur opposer 
+
             ///passage par fonction
             updateScore( &player1,&player2);
 
