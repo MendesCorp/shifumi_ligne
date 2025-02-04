@@ -3,7 +3,7 @@
 
 
 #define CLIENT_PORT 4015
-#define SERVER_PORT 8930
+#define SERVER_PORT 8935
 
 
 

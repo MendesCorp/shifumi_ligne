@@ -1,9 +1,16 @@
 #pragma once
 #define BUFFER_SIZE 1024
 
-#define CLIENT_PORT 8025
-#define SERVER_PORT 8930
+#define CLIENT_PORT 8026
+#define SERVER_PORT 8935
 
+typedef struct player {
+
+    char nom[255];
+    int victoire;
+    int choix;
+
+}t_player;
 
 
 #include <stdio.h>

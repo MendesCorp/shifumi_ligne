@@ -40,6 +40,7 @@ int main(){
         char player[255]; memset(player, 0, 255);
         char choix[255]; memset(choix, 0, 255);
         char tampon[255];memset(tampon,0,255);
+
         printf("Qui est en train de jouer ?\n");
         fgets(player, 255, stdin);
         player[strcspn(player, "\n")] = 0;
@@ -51,12 +52,19 @@ int main(){
         fgets(choix, 255, stdin);
         choix[strcspn(choix, "\n")] = 0;
 
-
         error = send(client_fd, choix, sizeof(choix), 0);
         error = recv(client_fd,tampon,sizeof(tampon),0); /// tampon, qui me permet d'attendre l'autre joueur
-        }
+        
+        char score[255];
+
+        error = recv(client_fd,score,sizeof(score),0);
+        
+        printf("%s",score);
+
+        
+    }
  
 
-close(client_fd);
+    close(client_fd);
 
 }

@@ -13,7 +13,7 @@
 #include <sys/stat.h> 
 #include <pthread.h> // pr ls threads
 #define BUFFER_SIZE 1024
-#define SERVER_PORT 8930
+#define SERVER_PORT 8935
 
 typedef struct player {
 
