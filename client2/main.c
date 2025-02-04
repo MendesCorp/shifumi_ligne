@@ -53,7 +53,13 @@ int main(){
         choix[strcspn(choix, "\n")] = 0;
 
         error = send(client_fd, choix, sizeof(choix), 0);
-        error = recv(client_fd,tampon,sizeof(tampon),0); /// tampon, qui me permet d'attendre l'autre joueur
+
+        while(1) {
+        
+            if(error = recv(client_fd,tampon,sizeof(tampon),0)) {   // tampon, qui me permet d'attendre l'autre joueur
+                break;
+            }
+        }
         
         char score[255];
 
@@ -63,7 +69,6 @@ int main(){
 
         
     }
- 
 
     close(client_fd);
 

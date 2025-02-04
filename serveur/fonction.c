@@ -27,3 +27,4 @@ void updateScore(struct player *player1,struct player *player2) {
     return;
 }
 
+

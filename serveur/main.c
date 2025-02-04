@@ -132,10 +132,10 @@ int main() {
                     player1.nom, player1.victoire, player1.choix,
                     player2.nom, player2.victoire, player2.choix);
             
-            error = send(id_client[0], score , sizeof(score), 0); perror("send"); ///tempon a renvoyer au joueur opposé
+            error = send(id_client[0], score , sizeof(score), 0); perror("send");
             if(error == -1) return EXIT_FAILURE;
 
-            error = send(id_client[1], score , sizeof(score), 0); perror("send"); ///tempon a renvoyer au joueur opposé
+            error = send(id_client[1], score , sizeof(score), 0); perror("send");
             if(error == -1) return EXIT_FAILURE;
 
 

@@ -13,7 +13,7 @@
 #include <sys/stat.h> 
 #include <pthread.h> // pr ls threads
 #define BUFFER_SIZE 1024
-#define SERVER_PORT 8935
+#define SERVER_PORT 8936
 
 typedef struct player {
 
@@ -23,13 +23,3 @@ typedef struct player {
 
 }t_player;
 #include "fonction.c"
-
-
-
-// char player1[255];
-// char player2[255];
-
-// int choix_p1;   int choix_p2;
-// int victoire_p1 = 0;    int defaite_p1 = 0;
-// int victoire_p2 = 0;    int defaite_p2 = 0;
-// char choix[255];
