@@ -126,11 +126,7 @@ int main() {
             round++;
             /// a changer pour un send 
 
-            sprintf(score,
-                    "nom :%s\n victoire :%d\n choix : %d\n \n\n"
-                    "nom :%s\n victoire :%d\n choix : %d\n",
-                    player1.nom, player1.victoire, player1.choix,
-                    player2.nom, player2.victoire, player2.choix);
+            printScore(score, player1, player2); 
             
             error = send(id_client[0], score , sizeof(score), 0); perror("send");
             if(error == -1) return EXIT_FAILURE;

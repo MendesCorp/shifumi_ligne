@@ -1,7 +1,7 @@
 #pragma once
 #define BUFFER_SIZE 1024
 
-#define CLIENT_PORT 8026
+#define CLIENT_PORT 8027
 #define SERVER_PORT 8936
 
 typedef struct player {

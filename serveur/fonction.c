@@ -27,4 +27,10 @@ void updateScore(struct player *player1,struct player *player2) {
     return;
 }
 
-
+void printScore(char *score, struct player player1, struct player player2) {
+    sprintf(score,
+        "nom :%s\n victoire :%d\n choix : %d\n \n\n"
+        "nom :%s\n victoire :%d\n choix : %d\n",
+        player1.nom, player1.victoire, player1.choix,
+        player2.nom, player2.victoire, player2.choix);
+}
