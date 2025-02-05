@@ -3,12 +3,12 @@
 
 #define CLIENTS 2
 
-int id_client[BUFSIZ];
+int id_client[BUFFER_SIZE];
 
 void * thread_accept(void* arg) {
 
     int serv_fd = socket(AF_INET, SOCK_STREAM, 0);perror("socket");
-    int error = listen(serv_fd, BUFSIZ); perror("listen");
+    int error = listen(serv_fd, BUFFER_SIZE); perror("listen");
     if(error == -1) return NULL;
 
     printf("Server listen on port : %d\n",SERVER_PORT);
@@ -35,7 +35,7 @@ int main() {
     int error = bind(serv_fd, (struct sockaddr*) &serv_addr, sizeof serv_addr); perror("bind");
     if(error == -1) return EXIT_FAILURE; 
 
-    error = listen(serv_fd, BUFSIZ); perror("listen");
+    error = listen(serv_fd, BUFFER_SIZE); perror("listen");
     if(error == -1) return EXIT_FAILURE; 
 
     printf("Server listening on port : %d\n",SERVER_PORT);
@@ -44,21 +44,17 @@ int main() {
     socklen_t len;
     int client_fd;
 
-    printf("pre-boucle while\n");
     // PARCOURIR SOCKETS DES DEUX CLIENTS
     while(1) {
-
-        printf("pre-boucle for; dans boucle while\n");
         
         for(int i = 0; i < CLIENTS; i++) {
             client_fd = accept(serv_fd, (struct sockaddr*) &client_addr, &len); perror("accept");
             if(client_fd == -1) return EXIT_FAILURE;
 
-            id_client[i] = client_fd;   // id_client[i] pour distinguer les deux clients 
+            id_client[i] = client_fd;                   // id_client[i] pour distinguer les deux clients 
             printf("client[%d] connecté\n",i);
         }
         
-
         struct player player1;
         strcpy(player1.nom, "joueur");
         player1.victoire = 0;                           //struct avec valeurs par défaut qu'on va ensuite venir modifier avec les entrées utilisateur des clients
@@ -78,18 +74,15 @@ int main() {
             if(error == -1) return EXIT_FAILURE;
 
             if (error > 0){
-
                 strcpy(player1.nom, player);
-                memset(player, 0, 255);     // réinitialise le tableau à 0
+                memset(player, 0, 255);                 // réinitialise le tableau à 0
                 printf("%s a joué\n", player1.nom);
                 nb_recv++;
 
             }else{ perror("recv");}
-
                 error = recv(id_client[1], player, sizeof(player), 0); perror("recv");
 
             if (error > 0){
-
                 strcpy(player2.nom, player);
                 memset(player, 0, 255);
                 printf("%s a joué\n", player2.nom);
@@ -104,27 +97,28 @@ int main() {
 
         while(1){
             ////RECV DES CHOIX DES JOUEURS
-            char buf[255]; memset(buf, 0, 255); ///buffer pour stocker le choix à transferer dans player.choix
+            char recup_choix[255]; memset(recup_choix, 0, 255); ///recup_choixfer pour stocker le choix à transferer dans player.choix
 
-            error = recv(id_client[0], buf , sizeof(buf), 0); perror("recv");
+            error = recv(id_client[0], recup_choix , sizeof(recup_choix), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
-            player1.choix = atoi(buf);
+            player1.choix = atoi(recup_choix);
 
-            error = send(id_client[1], tampon , sizeof(tampon), 0); perror("send");  ///tempon a renvoyer au joueur opposé
+            error = recv(id_client[1], recup_choix , sizeof(recup_choix), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
+            player2.choix = atoi(recup_choix);
 
-            error = recv(id_client[1], buf , sizeof(buf), 0); perror("recv");
-            if(error == -1) return EXIT_FAILURE;
-            player2.choix = atoi(buf);
+            // error = send(id_client[0], tampon , sizeof(tampon), 0); perror("send"); ///tempon a renvoyer au joueur opposé
+            // if(error == -1) return EXIT_FAILURE;
 
-            error = send(id_client[0], tampon , sizeof(tampon), 0); perror("send"); ///tempon a renvoyer au joueur opposé
-            if(error == -1) return EXIT_FAILURE;
+            // error = send(id_client[1], tampon , sizeof(tampon), 0); perror("send");  ///tempon a renvoyer au joueur opposé
+            // if(error == -1) return EXIT_FAILURE;
+
+
 
             ///passage par fonction
-            updateScore( &player1,&player2);
-
+            updateScore(&player1,&player2);
+            
             round++;
-            /// a changer pour un send 
 
             printScore(score, player1, player2); 
             
@@ -138,7 +132,6 @@ int main() {
             if(round > 10){break;}
         }
 
-            
             int results;
             results = atoi(score);
 
@@ -146,40 +139,13 @@ int main() {
             error = send(serv_fd, score, sizeof(score), 0); perror("send");
             if(error == -1) return EXIT_FAILURE;
 
-
-
-
-
-
         // pthread_t scd_client;
         // pthread_create(&scd_client, NULL, thread_accept, NULL);
         // pthread_join(scd_client, NULL);
     }
 
 
-
-
-
-
-
-
-
-
-
     close(serv_fd);
 
     return 0;
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-

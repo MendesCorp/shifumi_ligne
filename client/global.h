@@ -1,17 +1,4 @@
 #pragma once
-#define BUFFER_SIZE 1024
-
-#define CLIENT_PORT 8027
-#define SERVER_PORT 8936
-
-typedef struct player {
-
-    char nom[255];
-    int victoire;
-    int choix;
-
-}t_player;
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,3 +9,19 @@ typedef struct player {
 #include <dirent.h> // Pour lister les fichiers
 #include <fcntl.h>  // Pour manipuler les fichiers
 #include <sys/stat.h> // Pour les fichiers
+
+#define PIERRE 1
+#define FEUILLE 2
+#define CISEAUX 3
+#define QUIT 0
+#define BUFFER_SIZE 1024
+
+#define CLIENT_PORT 8030
+#define SERVER_PORT 2730
+typedef struct player {
+
+    char nom[255];
+    int victoire;
+    int choix;
+
+}t_player;
