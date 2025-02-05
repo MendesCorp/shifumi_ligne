@@ -101,11 +101,13 @@ int main() {
 
             error = recv(id_client[0], recup_choix , sizeof(recup_choix), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
-            player1.choix = atoi(recup_choix);
+            player1.choix = writingChoix(recup_choix);
+            printf("%s\n", recup_choix);
 
             error = recv(id_client[1], recup_choix , sizeof(recup_choix), 0); perror("recv");
             if(error == -1) return EXIT_FAILURE;
-            player2.choix = atoi(recup_choix);
+            player2.choix = writingChoix(recup_choix);
+            printf("%s\n", recup_choix);
 
             // error = send(id_client[0], tampon , sizeof(tampon), 0); perror("send"); ///tempon a renvoyer au joueur opposé
             // if(error == -1) return EXIT_FAILURE;
@@ -117,7 +119,7 @@ int main() {
 
             ///passage par fonction
             updateScore(&player1,&player2);
-            
+
             round++;
 
             printScore(score, player1, player2); 

@@ -41,7 +41,7 @@ int main(){
     printf("2. ✋\n");
     printf("3. ✌️\n");
     printf("\n");
-    
+
     char player[255]; memset(player, 0, 255);
     char choix[255]; memset(choix, 0, 255);
     //char tampon[255];memset(tampon,0,255);
@@ -57,7 +57,7 @@ int main(){
         printf("Pierre, feuille, ciseaux ?\n");
         fgets(choix, 255, stdin);
         choix[strcspn(choix, "\n")] = 0;
-
+        
         error = send(client_fd, choix, sizeof(choix), 0);
 
 

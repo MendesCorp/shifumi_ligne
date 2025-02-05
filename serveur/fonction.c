@@ -11,6 +11,7 @@ void updateScore(struct player *player1,struct player *player2) {
     if((player1->choix == PIERRE && player2->choix == CISEAUX) || (player1->choix == FEUILLE && player2->choix == PIERRE) || (player1->choix == CISEAUX && player2->choix == FEUILLE)) {
     
         player1->victoire ++;
+    
     // Condition de victoire du joueur 2
     }else if ((player2->choix == PIERRE && player1->choix == CISEAUX) || (player2->choix == FEUILLE && player1->choix == PIERRE) || (player2->choix ==  CISEAUX && player1->choix == FEUILLE)) {
        
@@ -23,15 +24,14 @@ void updateScore(struct player *player1,struct player *player2) {
 
     return;
 }
-
 // fonction qui prend en compte les != façons d'ortographier 
-int writingChoix(struct player *player1,struct player *player2) {
+char writingChoix(char *choix) {
 
-    if (strcmp(player1->choix && player2->choix, "1") == 0 || strcmp(player1->choix && player2->choix, "pierre") == 0 || strcmp(player1->choix && player2->choix, "p") == 0) {return PIERRE;}
-    
-    if (strcmp(player1->choix && player2->choix, "2") == 0 || strcmp(player1->choix && player2->choix, "feuille") == 0 || strcmp(player1->choix && player2->choix, "f") == 0) {return FEUILLE;}
+    if(strcmp(choix, "1") == 0 || strcmp(choix, "pierre") == 0 || strcmp(choix, "p") == 0) {return PIERRE;}
+   
+    if(strcmp(choix, "2") == 0 || strcmp(choix, "feuille") == 0 || strcmp(choix, "f") == 0) {return FEUILLE;}
 
-    if (strcmp(player1->choix && player2->choix, "3") == 0 || strcmp(player1->choix && player2->choix, "ciseaux") == 0 || strcmp(player1->choix && player2->choix, "c") == 0) {return CISEAUX;}
+    if(strcmp(choix, "3") == 0 || strcmp(choix, "ciseaux") == 0 || strcmp(choix, "c") == 0) {return CISEAUX;}
 }
 
 void printScore(char *score, struct player player1, struct player player2) {

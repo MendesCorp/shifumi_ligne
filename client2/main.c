@@ -41,7 +41,7 @@ int main(){
     printf("2. ✋\n");
     printf("3. ✌️\n");
     printf("\n");
-    
+
     char player[255]; memset(player, 0, 255);
     char choix[255]; memset(choix, 0, 255);
     //char tampon[255];memset(tampon,0,255);
