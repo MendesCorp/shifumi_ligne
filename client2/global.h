@@ -18,7 +18,7 @@
 #include "fonction.c"
 
 #define CLIENT_PORT 4016
-#define SERVER_PORT 2731
+#define SERVER_PORT 2732
 typedef struct player {
 
     char nom[255];

@@ -17,7 +17,7 @@
 #include <sys/stat.h> 
 #include <pthread.h> // pr ls threads
 
-#define SERVER_PORT 2731
+#define SERVER_PORT 2732
 
 typedef struct player {
 

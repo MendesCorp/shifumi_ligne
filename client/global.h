@@ -18,7 +18,7 @@
 
 
 #define CLIENT_PORT 8031
-#define SERVER_PORT 2731
+#define SERVER_PORT 2732
 typedef struct player {
 
     char nom[255];
