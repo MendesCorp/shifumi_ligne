@@ -15,10 +15,10 @@
 #include <dirent.h> // Pour lister les fichiers
 #include <fcntl.h>  // Pour manipuler les fichiers
 #include <sys/stat.h> // Pour les fichiers
-#include "fonction.c"
 
 #define CLIENT_PORT 4016
-#define SERVER_PORT 2732
+#define SERVER_PORT 2734
+
 typedef struct player {
 
     char nom[255];
@@ -26,3 +26,5 @@ typedef struct player {
     int choix;
 
 }t_player;
+
+#include "fonction.c"

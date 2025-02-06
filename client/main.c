@@ -14,11 +14,13 @@ int main(){
      * bind
      * Je relie le socket à un port et une ip avec la fonction bind()
      */
+
     struct sockaddr_in client_addr = {
         .sin_addr.s_addr = INADDR_ANY,
         .sin_family = AF_INET,
         .sin_port = htons(CLIENT_PORT)
     };
+    
     int error = bind(client_fd,(struct sockaddr*)&client_addr,sizeof client_addr);perror("bind");
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
@@ -26,6 +28,7 @@ int main(){
      * connect
      * Je connecte mon socket client au socket server situé en 127.0.0.1:SERVER_PORT
      */
+
     struct sockaddr_in serv_addr = {
         .sin_addr.s_addr = inet_addr("127.0.0.1"), // Attention à ne pas mettre INADDR_ANY !
         .sin_family = AF_INET,
@@ -36,34 +39,33 @@ int main(){
     if(error == -1) { close(client_fd); return EXIT_FAILURE; }
 
     // SOCKET CLIENT PRET A COMMUNIQUER !
-    printf("---------------------- CHIFOUMI --------------------\n");
+    printf("\n");
+    printf("---------------------- SHIFUMI --------------------\n");
     printf("1. 👊\n");
     printf("2. ✋\n");
     printf("3. ✌️\n");
+    printf("----------------------------------------------------\n");
+    
     printf("\n");
 
     char player[255]; memset(player, 0, 255);
     char choix[255]; memset(choix, 0, 255);
     //char tampon[255];memset(tampon,0,255);
     
-    printf("Qui est en train de jouer ?\n");
+    printf("\nQui est en train de jouer ?\n");
     fgets(player, 255, stdin);
     player[strcspn(player, "\n")] = 0;
 
     error = send(client_fd, player, sizeof(player), 0);
 
     while(1) {
-        
-        printf("Pierre, feuille, ciseaux ?\n");
+
+        printf("\nPierre, feuille, ciseaux ?\n");
         fgets(choix, 255, stdin);
         choix[strcspn(choix, "\n")] = 0;
-        
+
         error = send(client_fd, choix, sizeof(choix), 0);
 
-
-
-
-    
         // if(error = recv(client_fd,tampon,sizeof(tampon),0)) {   // tampon, qui me permet d'attendre l'autre joueur
         // }
         int quit = 0;
@@ -76,7 +78,6 @@ int main(){
             return 0;
         }
 
-        
         char score[255];
 
         error = recv(client_fd,score,sizeof(score),0);
@@ -84,9 +85,5 @@ int main(){
         printf("%s",score);
     }    
 
-    
- 
-
     close(client_fd);
-
 }
