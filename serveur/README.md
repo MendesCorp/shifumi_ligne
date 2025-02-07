@@ -9,8 +9,8 @@ Table des matières
     Utilisation
     Structure du projet
     Technologies utilisées
-    Contribuer
-    Auteur
+    Contributeurs
+    Auteurs
 
 Fonctionnalités
 
