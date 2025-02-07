@@ -1,5 +1,4 @@
 #include "global.h"
-#include "fonction.c"
 
 #define CLIENTS 2
 

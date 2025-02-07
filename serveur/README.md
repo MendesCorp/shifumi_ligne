@@ -24,3 +24,7 @@ Prérequis
     Un système d'exploitation compatible avec le langage C (Linux, macOS ou Windows).
     Un compilateur C (comme gcc par exemple).
     Une bibliothèque réseau (comme sys/socket.h sur Linux).
+
+
+    ![alt text](image.png)
+
