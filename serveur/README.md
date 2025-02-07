@@ -26,5 +26,4 @@ Prérequis
     Une bibliothèque réseau (comme sys/socket.h sur Linux).
 
 
-    ![alt text](image.png)
-
+![alt text](image-1.png)
